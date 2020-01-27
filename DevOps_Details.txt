@@ -1,0 +1,53 @@
+Install Java
+	sudo apt update
+	sudo apt install openjdk-8-jdk
+Add Jenkins Debian Repository
+	wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+	sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+Install Jenkins
+	sudo apt update
+	sudo apt install jenkins
+	
+
+Docker Installation
+
+
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	sudo apt-get update
+	apt-cache policy docker-ce
+	sudo apt-get install -y docker-ce
+	
+	sudo docker inspect <container_id> | grep '"IPAddress"' | head -n 1
+	
+	https://nozaki.me/roller/kyle/entry/articles-jenkins-sshdeploy
+sudo usermod -aG docker $USER
+docker pull ubuntu
+docker images
+docker ps 
+docker ps -a
+docker run -it -d ubuntu
+docker exec -it <container_id> bash
+docker rm -f $(docker ps -a -q)
+docker run -it -d -p 82:80 -d <image_name>
+docker login
+docker push <imagename>
+
+docker build . -t new_dockerfile
+
+
+Dokerfile
+	FROM
+	RUN
+	ADD
+	CMD
+	ENTRYPOINT
+	ENV
+
+FROM ubuntu
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name <name>
+	
